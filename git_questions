@@ -1,0 +1,10 @@
+1.给git账号添加ssh keys：
+  使用git clone命令从github上同呼代码库时，如果使用的ssh链接，而ssh key没有添加到github账号中，系统会报错：
+  Permission denied (publickey)
+  fatal: Could not read from remote repository.
+  Please make sure you have the correct access rights 
+  and the repository exists.
+这时需要在本地创建ssh key， 然后将生成的ssh key文件内容添加到github账号中去。
+创建ssh key的方法：
+  ssh-keygen -t rsa -C "xxx@xxxxxx.com"  #注册githua时的邮箱地址
+  生成的ssh key文件保存在~/.ssh/id_rsa.pub，将其内容复制到github中(在账户设置中的ssh keys)即可.
