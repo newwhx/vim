@@ -1,30 +1,9 @@
-[submodule "bundle/vim-pathogen"]
-	path = bundle/vim-pathogen
-	url = git://github.com/tpope/vim-pathogen.git
 [submodule "bundle/vim_colors-solarized"]
 	path = bundle/vim_colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized
-[submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized
-[submodule "bundle/closetag"]
-	path = bundle/closetag
-	url = git://github.com/docunext/closetag.vim.git
-[submodule "bundle/command-t"]
-	path = bundle/command-t
-	url = git://git.wincent.com/command-t.git
 [submodule "delimitMate"]
 	path = delimitMate
-	url = git://github.com/Raimondi/delimitMate.git
-[submodule "bundle/delmitmate"]
-	path = bundle/delmitmate
 	url = git://github.com/Raimondi/delimitMate.git
 [submodule "supertab"]
 	path = supertab
 	url = git://github.com/ervandew/supertab.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = git://github.com/ervandew/supertab.git
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
