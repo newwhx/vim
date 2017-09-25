@@ -38,7 +38,8 @@ au BufNewFile, BufRead *.py
 			\ set autoindent
 			\set fileformat=unix
 
-
+autocmd FileType python nnoremap <buffer>  <leader>c I#<esc>
+autocmd FileType c,java,javascript nnoremap <buffer> <leader>c I//<esc>
 "solarized setting
 set background=dark
 let g:solarized_termcolors=16
