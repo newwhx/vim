@@ -11,17 +11,19 @@ set splitbelow
 set encoding=utf-8
 
 "basic map
-noremap <up> <NOP>
+noremap <up> <nop>
 noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
 noremap <leader>cmd <esc>:
+inoremap <esc> <nop>
 inoremap jk <esc>
 noremap <leader>w :w<cr>
 noremap <leader>q :q<cr>
 nnoremap <leader>wq :wq<cr>
 nnoremap <leader>nq :q!<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>pl :PluginInstal<cr>
 
 "0 code folding: make space more useful
