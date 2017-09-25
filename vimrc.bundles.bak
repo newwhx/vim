@@ -1,5 +1,7 @@
+set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle "altercation/vim-colors-solarized"
+Bundle "vim-scripts/indentpython"

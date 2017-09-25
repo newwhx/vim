@@ -2,8 +2,42 @@ if filereadable(expand("~/.vimrc.bundles"))
 source ~/.vimrc.bundles
 endif
 
+let mapleader = ";"
+"basic setting
+filetype plugin indent on
 set number
 syntax enable
+set splitbelow
+set encoding=utf-8
+
+"basic map
+noremap <up> <NOP>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <leader>cmd <esc>:
+inoremap jk <esc>
+noremap <leader>w :w<cr>
+noremap <leader>q :q<cr>
+nnoremap <leader>wq :wq<cr>
+nnoremap <leader>nq :q!<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>pl :PluginInstal<cr>
+
+"0 code folding: make space more useful
+nnoremap <space> za
+"1 support PEP8 style for python
+au BufNewFile, BufRead *.py
+			\ set tabstop = 4
+			\ set softtabstop = 4
+			\ set shiftwidth = 4
+			\ set textwidth = 79
+			\ set expandtab
+			\ set autoindent
+			\set fileformat=unix
+
+
+"solarized setting
 set background=dark
 let g:solarized_termcolors=16
 let g:solarized_termtrans=1
