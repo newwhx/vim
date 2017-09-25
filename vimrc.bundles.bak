@@ -5,3 +5,4 @@ call vundle#rc()
 
 Bundle "altercation/vim-colors-solarized"
 Bundle "vim-scripts/indentpython"
+Bundle "tmhedberg/SimpylFold"
