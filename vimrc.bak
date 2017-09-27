@@ -4,11 +4,14 @@ endif
 
 let mapleader = ";"
 "basic setting
-filetype plugin indent on
+filetype indent on
+filetype plugin on
 set number
 syntax enable
 set splitbelow
 set encoding=utf-8
+set backspace=2 
+"set clipboard=unnamed
 
 "basic map
 noremap <up> <nop>
@@ -26,9 +29,10 @@ noremap <leader>w :w<cr>
 noremap <leader>q :q<cr>
 nnoremap <leader>wq :wq<cr>
 nnoremap <leader>nq :q!<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>ev :edit $MYVIMRC<cr>
-nnoremap <leader>pl :PluginInstal<cr>
+nnorema  <leader>evb :edit ~/.vimrc.bundles<cr>
+nnoremap <leader>pi :PluginInstal<cr>
 
 "change to different vim tabs
 nnoremap <c-j> <c-w><c-j>
@@ -71,3 +75,35 @@ let g:solarized_termtrans=1
 colorscheme solarized
 "simpylFold setting
 let g:SimpylFold_docstring_preview=1
+
+
+"YCM settin
+let g:ycm_server_python_interpreter="/usr/bin/python"
+let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py"
+let g:ycm_key_list_select_completion = ['<c-n>','<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+
+"nerdtree setting 
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+nnoremap <leader>n :NERDTreeToggle<cr>
+"autocmd vimenter * NERDTree
+
+"syntastic setting
+let python_highlight_all=1
+
+
+"python-mode setting
+let g:pymode_rope_goto_definition_bind = "<c-d>"
+let g:pymode_lint = 0
+let g_pymode_folding = 0
+let g:pymode_indent = 1
+let g:pymode_options_colorcolumns = 1
+
+"google/yapf setting
+autocmd FileType python nnoremap <leader>= :0,$!yapf<cr>
+
+"ultisnips setting
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
