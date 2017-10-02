@@ -16,4 +16,9 @@ Bundle "jistr/vim-nerdtree-tabs"
 Bundle "python-mode/python-mode"
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'davidhalter/jedi-vim'
+Plugin 'lfv89/vim-interestingwords'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'majutsushi/tagbar'
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
+Plugin 'kien/ctrlp.vim'
