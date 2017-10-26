@@ -4,21 +4,17 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle "altercation/vim-colors-solarized"
-Bundle "vim-scripts/indentpython"
-Bundle "tmhedberg/SimpylFold"
 Bundle "Valloric/YouCompleteMe"
 Bundle "tpope/vim-fugitive"
 Bundle "Lokaltog/powerline"
 Bundle "w0rp/ale"
-Bundle "google/yapf"
 Bundle "scrooloose/nerdtree"
-Bundle "jistr/vim-nerdtree-tabs"
 Bundle "python-mode/python-mode"
+Bundle "vim-scripts/indentpython"
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'lfv89/vim-interestingwords'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'majutsushi/tagbar'
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-commentary'

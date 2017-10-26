@@ -13,6 +13,8 @@ set encoding=utf-8
 set backspace=2 
 set tabstop=4
 set noswapfile
+set nowrap
+set ignorecase
 "set nofoldenable
 "set clipboard=unnamedplus
 
@@ -41,7 +43,6 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnorema  <leader>evb :edit ~/.vimrc.bundles<cr>
 nnoremap <leader>pi :PluginInstal<cr>
-nnoremap <leader>r :!
 
 "change to different vim tabs
 nnoremap <c-j> <c-w><c-j>
@@ -87,8 +88,8 @@ au BufNewFile, BufRead *.py
 			\ set autoindent
 			\set fileformat=unix
 au BufNewFile, BufRead *.js, *.html, *.css, *.java
-			\ set tabstop = 2
-			\ set softtabstop = 2
+			\ set tabstop = 4
+			\ set softtabstop = 4
 			\ set shiftwidth = 2
 autocmd FileType python nnoremap <buffer>  <leader>c I#<esc>
 autocmd FileType c,java,javascript nnoremap <buffer> <leader>c I//<esc>
@@ -123,9 +124,6 @@ let g:pymode_rope_lookup_project = 0
 let g_pymode_folding = 0
 let g:pymode_indent = 1
 let g:pymode_options_colorcolumns = 1
-
-"google/yapf setting
-autocmd FileType python nnoremap <leader>= :0,$!yapf<cr>
 
 "ultisnips setting
 let g:UltiSnipsExpandTrigger="<c-e>"
