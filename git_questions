@@ -8,3 +8,11 @@
 创建ssh key的方法：
   ssh-keygen -t rsa -C "xxx@xxxxxx.com"  #注册githua时的邮箱地址
   生成的ssh key文件保存在~/.ssh/id_rsa.pub，将其内容复制到github中(在账户设置中的ssh keys)即可.
+
+2. 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
