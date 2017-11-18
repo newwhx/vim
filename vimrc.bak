@@ -10,11 +10,14 @@ set number
 syntax enable
 set splitbelow
 set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 set backspace=2 
 set tabstop=4
 set noswapfile
 set nowrap
 set ignorecase
+set hlsearch
+set incsearch
 "set nofoldenable
 "set clipboard=unnamedplus
 
@@ -22,7 +25,6 @@ set ignorecase
 au Winleave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
-
 "basic map
 noremap <up> <nop>
 noremap <down> <nop>
@@ -43,6 +45,7 @@ nnoremap <leader>sv :source ~/.vimrc<cr>
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnorema  <leader>evb :edit ~/.vimrc.bundles<cr>
 nnoremap <leader>pi :PluginInstal<cr>
+nnoremap <leader>nh :set nohlsearch<cr>
 
 "change to different vim tabs
 nnoremap <c-j> <c-w><c-j>
@@ -56,9 +59,9 @@ let &t_EI .= "\<Esc>[?2004l"
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 function! XTermPasteBegin()
-	  set pastetoggle=<Esc>[201~
-	  set paste
-	  return ""
+set pastetoggle=<Esc>[201~
+set paste
+return ""
 endfunction
 
 "0 code folding: make space more useful
@@ -73,26 +76,25 @@ py << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
-	project_base_dir = os.environ['VIRTUAL_ENV']
-	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-	execfile(activate_this, dict(__file__=activate_this))
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
 EOF
 
 " support PEP8 style for python
 au BufNewFile, BufRead *.py
-			\ set tabstop = 4
-			\ set softtabstop = 4
-			\ set shiftwidth = 4
-			\ set textwidth = 79
-			\ set expandtab
-			\ set autoindent
-			\set fileformat=unix
+	\ set tabstop = 4
+	\ set softtabstop = 4
+	\ set shiftwidth = 4
+	\ set textwidth = 79
+	\ set expandtab
+	\ set autoindent
+	\set fileformat=unix
 au BufNewFile, BufRead *.js, *.html, *.css, *.java
-			\ set tabstop = 4
-			\ set softtabstop = 4
-			\ set shiftwidth = 2
-autocmd FileType python nnoremap <buffer>  <leader>c I#<esc>
-autocmd FileType c,java,javascript nnoremap <buffer> <leader>c I//<esc>
+	\ set tabstop = 4
+	\ set softtabstop = 4
+	\ set shiftwidth = 2
+
 "solarized setting
 set background=dark
 let g:solarized_termcolors=128
@@ -101,16 +103,38 @@ colorscheme solarized
 "simpylFold setting
 let g:SimpylFold_docstring_preview=1
 
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_always_populate_loc_list = 1
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+let g:formatters_javascript = ['eslint']
+noremap <leader>af :Autoformat<CR>:w<CR>
 
 "YCM settin
 let g:ycm_server_python_interpreter="/usr/bin/python"
 let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py"
-let g:ycm_key_list_select_completion = ['<tab>','<Down>']
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_complete_in_comments = 1
+let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+" 比较喜欢用tab来选择补全...
+function! MyTabFunction ()
+let line = getline('.')
+let substr = strpart(line, -1, col('.')+1)
+let substr = matchstr(substr, "[^ \t]*$")
+if strlen(substr) == 0
+return "\<tab>"
+endif
+return pumvisible() ? "\<c-n>" : "\<c-x>\<c-o>"
+endfunction
+inoremap <tab> <c-r>=MyTabFunction()<cr>
+
+"let g:ycm_key_list_select_completion = ['<tab>','<Down>']
 "let g:ycm_key_list_previous_completion = ['<tab>', '<Up>']
 
 "nerdtree setting 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-nnoremap <leader>n :NERDTreeToggle<cr>
+nnoremap <leader>n :NERDTreeTabsToggle<cr>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 "autocmd vimenter * NERDTree
 
 "syntastic setting
@@ -131,8 +155,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 "vim-interestingwords setting
-let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222']
-let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
+"let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222']
+"let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF']
 let g:interestingWordsRandomiseColors = 1
 
 "powerline setting
@@ -149,3 +173,47 @@ nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>r :!python % <cr>
 nnoremap <leader>r3 :!python3 % <cr>
 
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"use ag as the ctrlp command
+let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden 
+			\ --ignore .git 
+			\ --ignore out 
+			\ --ignore .svn 
+			\ --ignore .hg 
+			\ --ignore .DS_Store
+			\ -g ""'
+
+
+let g:vue_disable_pre_processors=1
+autocmd FileType vue syntax sync fromstart
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+
+function! s:add_title()
+  if &filetype == 'javascript'
+		call setline(1, "'use strict'")
+        call append(line('.'), '')
+  endif
+endfunction
+autocmd BufNewFile *.js execute "call s:add_title()"
